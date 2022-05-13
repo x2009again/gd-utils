@@ -21,4 +21,8 @@ const AUTH = { // 如果您拥有service account的json授权文件，可将其�
   tg_whitelist: ['your_tg_username'] // 你的tg username(t.me/username)，bot只会执行这个列表里的用户所发送的指令
 }
 
-module.exports = { AUTH, PARALLEL_LIMIT, RETRY_LIMIT, TIMEOUT_BASE, TIMEOUT_MAX, LOG_DELAY, PAGE_SIZE, DEFAULT_TARGET }
+//google drive同步到OneDrive
+const GD_root_Path='' //rclone 的google drive根目录作为源，如gd:/
+const OneDrive_Path ='' //rclone 的OneDrive目标目录，如onedrive:/gd
+
+module.exports = { AUTH, PARALLEL_LIMIT, RETRY_LIMIT, TIMEOUT_BASE, TIMEOUT_MAX, LOG_DELAY, PAGE_SIZE, DEFAULT_TARGET, GD_root_Path, OneDrive_Path }
