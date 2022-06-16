@@ -1,10 +1,10 @@
 const process = require("child_process");
 
 
-const { GD_root_Path, OneDrive_Path } = require('../config')
+const { GD_root_Path, OtherDisk_Path } = require('../config')
 
-async function copy_to_onedrive(taskid,callback){
-    process.exec(`rclone copy -P ${GD_root_Path} ${OneDrive_Path} --stats 5s -P --cache-chunk-size=100M --transfers=4 --ignore-errors > /root/.config/rclone/progress${taskid}.log`, (error, stdout, stderr) => {
+async function copy_to_otherdisk(taskid,callback){
+    process.exec(`rclone copy -P ${GD_root_Path} ${OtherDisk_Path} --stats 5s -P --cache-chunk-size=100M --transfers=4 --ignore-errors > /root/.config/rclone/progress${taskid}.log`, (error, stdout, stderr) => {
         if (!error) {
           // 成功
           process.exec(`rm -f /root/.config/rclone/progress${taskid}.log`)
@@ -17,4 +17,4 @@ async function copy_to_onedrive(taskid,callback){
       });
 }
 
-module.exports ={copy_to_onedrive}
+module.exports ={copy_to_otherdisk}

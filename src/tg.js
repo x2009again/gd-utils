@@ -5,7 +5,7 @@ const HttpsProxyAgent = require('https-proxy-agent')
 
 const { db } = require('../db')
 const { gen_count_body, validate_fid, real_copy, get_name_by_id, get_info_by_id, copy_file } = require('./gd')
-const { AUTH, DEFAULT_TARGET, USE_PERSONAL_AUTH, GD_root_Path, OneDrive_Path } = require('../config')
+const { AUTH, DEFAULT_TARGET, USE_PERSONAL_AUTH, GD_root_Path, OtherDisk_Path } = require('../config')
 const { tg_token } = AUTH
 const { copy_to_onedrive } = require('./onedrive')
 const gen_link = (fid, text) => `<a href="https://drive.google.com/drive/folders/${fid}">${text || fid}</a>`
@@ -267,9 +267,9 @@ async function tg_copy ({ fid, target, chat_id, update }) { // return task_id
       const { task_id } = info
       const { text } = await get_task_info(task_id)
       sm({ chat_id, text, parse_mode: 'HTML' })
-      if(GD_root_Path !='' && OneDrive_Path !=''){
-        await copy_to_onedrive(record.id,(flag)=>{
-          sm({ chat_id, text: `任务：${record.id} 复制到OneDrive ${ flag ? '成功':'失败' }`, parse_mode: 'HTML' }) 
+      if(GD_root_Path !='' && OtherDisk_Path !=''){
+        await copy_to_otherdisk(record.id,(flag)=>{
+          sm({ chat_id, text: `任务：${record.id} 复制到${OtherDisk_Path} ${ flag ? '成功':'失败' }`, parse_mode: 'HTML' }) 
         });
       }
     })
