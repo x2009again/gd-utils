@@ -12,7 +12,8 @@ const gen_link = (fid, text) => `<a href="https://drive.google.com/drive/folders
 
 if (!tg_token) throw new Error('请先在config.js里设置tg_token')
 const { https_proxy } = process.env
-const axins = axios.create(https_proxy ? { httpsAgent: new HttpsProxyAgent(https_proxy) } : {})
+const ProxyAgent = require('proxy-agent')
+const axins = axios.create(https_proxy ? { httpsAgent: new ProxyAgent(https_proxy) } : {})
 
 const FID_TO_NAME = {}
 
