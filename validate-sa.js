@@ -11,9 +11,10 @@ const prompts = require('prompts')
 const { GoogleToken } = require('gtoken')
 const axios = require('@viegg/axios')
 const HttpsProxyAgent = require('https-proxy-agent')
+const ProxyAgent = require('proxy-agent')
 
 const { https_proxy } = process.env
-const axins = axios.create(https_proxy ? { httpsAgent: new HttpsProxyAgent(https_proxy) } : {})
+const axins = axios.create(https_proxy ? { httpsAgent: new ProxyAgent(https_proxy) } : {})
 
 const SA_FILES = fs.readdirSync(path.join(__dirname, 'sa')).filter(v => v.endsWith('.json'))
 const SA_TOKENS = SA_FILES.map(filename => {
