@@ -124,6 +124,8 @@ colab使用录屏：[https://drive.google.com/drive/folders/19T37ARH7M1h67JGYanK
 http_proxy="YOUR_PROXY_URL" && https_proxy=$http_proxy && HTTP_PROXY=$http_proxy && HTTPS_PROXY=$http_proxy
 ```
 请把`YOUR_PROXY_URL`替换成你自己的代理地址
+如果执行中出现错误：Protocol "https:" not supported. Expected "http:"
+需要把代码中的const HttpsProxyAgent = require('https-proxy-agent')，改为const HttpsProxyAgent = require('proxy-agent')，node_modules\gaxios\build\src\gaxios.js文件也同样需要修改
 
 ## 其他环境
 nodejs本身是跨平台的，所以项目可以在各种操作系统上运行，下面的说明是针对Linux系统，如果你需要在 Windows 或 Android 上进行安装，可以参考：
